@@ -1,0 +1,31 @@
+{
+  "name": "meantrial",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ppeetteerrs/mean-tutorial",
+  "authors": [
+    "Peter Yuen <ppeetteerrsx@gmail.com>"
+  ],
+  "description": "mean trial",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "install": {
+    "path": "public/lib"
+  },
+  "dependencies": {
+    "angular": "1.4.9",
+    "bootstrap": "3.0.0",
+    "angular-route": "latest",
+    "angular-resource": "1.4.9",
+    "ng-file-upload-shim": "~11.2.3",
+    "ng-file-upload": "~11.2.3"
+  }
+}

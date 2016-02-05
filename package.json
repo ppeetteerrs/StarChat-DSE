@@ -1,0 +1,31 @@
+{
+  "name": "meantrial",
+  "version": "0.0.1",
+  "description": "mean trial",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppeetteerrs/mean-tutorial.git"
+  },
+  "author": "Peter Yuen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ppeetteerrs/mean-tutorial/issues"
+  },
+  "homepage": "https://github.com/ppeetteerrs/mean-tutorial#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "jsonfile": "^2.2.3",
+    "lodash": "^4.2.1",
+    "mongodb": "^2.1.5",
+    "mongoose": "^4.4.1",
+    "multer": "^1.1.0",
+    "node-json-db": "^0.5.1",
+    "util": "^0.10.3",
+    "winston": "^2.1.1"
+  }
+}
