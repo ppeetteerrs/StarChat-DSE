@@ -1,0 +1,54 @@
+<div class="col-lg-6">
+    <h1>{{topicinfo[0].year}} Question {{topicinfo[0].questionNumber}} - {{topicinfo[0].fullQuestion}}</h1>
+    <div class="wrapper">
+        <iframe ng-src="{{trustSrc(youtubeUrl)}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col center"><img class="speaker" src="/img/A.png" class="img-circle" width="100" height="100"></div>
+            <div class="col centerit profileA thhi">{{topicinfo[0].speakers_profile.A}}</div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col center"><img class="speaker" src="/img/B.png" class="img-circle" width="100" height="100"></div>
+            <div class="col centerit profileB thhi">{{topicinfo[0].speakers_profile.B}}</div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col center"><img class="speaker" src="/img/C.png" class="img-circle" width="100" height="100"></div>
+            <div class="col centerit profileC thhi">{{topicinfo[0].speakers_profile.C}}</div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="col center"><img class="speaker" src="/img/D.png" class="img-circle" width="100" height="100"></div>
+            <div class="col centerit profileD thhi">{{topicinfo[0].speakers_profile.D}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-9 col-md-6 no-pad">
+            <button class="button-clear groupInd " ng-click="groupToggle = 1 ; indToggle = 0 ; topicSelect()">
+                <i class="icon ion-person-stalker light" ng-class="{'positive' : groupToggle}">
+                </i>
+                <span ng-class="{'positive' : groupToggle}">Group Discussion </span>
+            </button>
+            <button class="button-clear groupInd" ng-click="groupToggle = 0 ; indToggle = 1 ; topicSelect()">
+                <i class="icon ion-person light" ng-class="{'balanced' : indToggle}">
+                </i>
+                <span ng-class="{'balanced' : indToggle}">Individual Response </span>
+            </button>
+        </div>
+        <div class="col-lg-3 col-md-6 no-pad">
+            <a href=# ng-click="goPrevious()"><i class="icon ion-chevron-left light groupIndIcon"></i></a>
+            <a href=# ng-click="goNext()"><i class="icon ion-chevron-right light groupIndIcon"></i></a>
+            <span class = "groupInd groupIndPage">&nbsp;&nbsp;Page : {{pageNum}} / {{pageCount}}</span>
+        </div>
+    </div>
+    <ng-pdf template-url="/partials/view.html" scale="page-fit"></ng-pdf>
+</div>
+
