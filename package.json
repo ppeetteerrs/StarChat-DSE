@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ppeetteerrs/mean-tutorial#readme",
   "dependencies": {
+    "angular-youtube-embed": "^1.1.1",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
     "jsonfile": "^2.2.3",

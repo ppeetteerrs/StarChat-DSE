@@ -1,13 +1,74 @@
-<h1>Browse</h1>
-<div class="container-fluid">
-    <div class="list-group">
-        <ul class="row-fluid" ng-repeat = "topic in topicinfo track by $index">
-            <a href="#" >
-                <img src="uploads/thumbnail/{{topic.year}}_{{topic.questionNumber}}.jpg" class="img-circle pull-left" alt="Cinque Terre" width="100" height="100">
-                <h4 class="list-group-item-heading">{{topic.year}}</h4>
-                <p class="list-group-item-text">{{topic.fullQuestion}}</p>
-            </a>
-        </ul>
-      
-    </div>
+
+<div class="list list-inset searchbar">
+  <label class="item item-input searchbar">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search" class="searchbar" ng-model="searchInput">
+  </label>
 </div>
+
+<table class="ui selectable inverted table">
+  <thead>
+    <tr>
+      <th class="center aligned"><a href="#" ng-click="sortType = 'year'; sortReverse = !sortReverse">
+        <span class="thh">Year  </span>
+        <span ng-show="sortType == 'year' && !sortReverse" class="icon ion-arrow-down-b thhi"></span>
+          <span ng-show="sortType == 'year' && sortReverse" class="icon ion-arrow-up-b thhi"></span>
+      </a></th>
+      <th class="center aligned"><a href="#" ng-click="sortType = 'questionNumber'; sortReverse = !sortReverse">
+        <span class="thh">Question Number  </span>
+        <span ng-show="sortType == 'questionNumber' && !sortReverse" class="icon ion-arrow-down-b thhi"></span>
+          <span ng-show="sortType == 'questionNumber' && sortReverse" class="icon ion-arrow-up-b thhi"></span>
+      </a></th>
+      <th class="center aligned"><a href="#" ng-click="sortType = 'fullQuestion'; sortReverse = !sortReverse">
+        <span class="thh">Question  </span>
+        <span ng-show="sortType == 'fullQuestion' && !sortReverse" class="icon ion-arrow-down-b thhi"></span>
+          <span ng-show="sortType == 'fullQuestion' && sortReverse" class="icon ion-arrow-up-b thhi"></span>
+      </a></th>
+      <th class="center aligned">
+        <span class="thh">Candidate A</span>
+      </th>
+      <th class="center aligned">
+        <span class="thh">Candidate B</span>
+      </a></th>
+      <th class="center aligned">
+        <span class="thh">Candidate C  </span>
+      </th>
+      <th class="center aligned">
+        <span class="thh">Candidate D  </span>
+      </th>
+      <th class="center aligned"><a href="#" ng-click="sortType = 'answer_date'; sortReverse = !sortReverse">
+        <span class="thh">Date Recorded  </span>
+        <span ng-show="sortType == 'answer_date' && !sortReverse" class="icon ion-arrow-down-b thhi"></span>
+          <span ng-show="sortType == 'answer_date' && sortReverse" class="icon ion-arrow-up-b thhi"></span>
+      </a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class = "tableBodyRow" ng-repeat = "topic in topicinfo | orderBy:sortType:sortReverse | filter:searchInput">
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.year}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.questionNumber}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.fullQuestion}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.speakers_profile.A}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.speakers_profile.B}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.speakers_profile.C}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.speakers_profile.D}}</h4>
+      </a></td>
+      <td><a ng-href="/topic/{{topic.year}}/{{topic.questionNumber}}/{{topic.fullQuestion}}">
+        <h4 class="ui center aligned tableBodyText">{{topic.answer_date}}</h4>
+      </a></td>
+    </tr>
+  </tbody>
+</table>
