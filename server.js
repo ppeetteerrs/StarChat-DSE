@@ -31,15 +31,6 @@ app.get('/', function(req, res) {
   res.sendFile("/public/index.html");
 });
 
-app.get('/browse/:year/:questionNumber', function(req, res) {
-  var route = path.resolve(__dirname + "/uploads/info.json");
-  console.log(route);
-   fs.readFile(route, function (err,data){
-     console.log(err);
-     res.pipe(data);
-  });
-});
-
 app.get('/audio/:year/:id', function(req, res) {
   var filename = req.params.year + req.params.id;
   var route = path.resolve(__dirname + "/resources/audio/" + filename + ".mp3");
@@ -64,6 +55,14 @@ app.get('/json/:year/:id', function(req, res) {
   var filename = req.params.year + req.params.id;
   var route = path.resolve(__dirname + "/public/uploads/json/" + filename + ".json");
   console.log(filename);
+   fs.readFile(route, function (err,data){
+     console.log(err);
+     res.json(data);
+  });
+});
+
+app.get('/infosheet', function(req, res) {
+  var route = path.resolve(__dirname + "/public/uploads/info.json");
    fs.readFile(route, function (err,data){
      console.log(err);
      res.json(data);
