@@ -40,9 +40,9 @@ app.get('/browse/:year/:questionNumber', function(req, res) {
   });
 });
 
-app.get('/audio/:folder/:year/:id', function(req, res) {
+app.get('/audio/:year/:id', function(req, res) {
   var filename = req.params.year + req.params.id;
-  var route = path.resolve(__dirname + "/public/uploads/" + req.params.folder + "/" + filename + ".pdf");
+  var route = path.resolve(__dirname + "/public/uploads/audio/" + filename + ".mp3");
   console.log(filename);
    fs.readFile(route, function (err,data){
      console.log(err);
