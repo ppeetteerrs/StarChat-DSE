@@ -42,7 +42,7 @@ app.get('/browse/:year/:questionNumber', function(req, res) {
 
 app.get('/audio/:year/:id', function(req, res) {
   var filename = req.params.year + req.params.id;
-  var route = path.resolve(__dirname + "/public/uploads/audio/" + filename + ".mp3");
+  var route = path.resolve(__dirname + "/resources/audio/" + filename + ".mp3");
   console.log(filename);
    fs.readFile(route, function (err,data){
      console.log(err);
@@ -50,10 +50,23 @@ app.get('/audio/:year/:id', function(req, res) {
   });
 });
 
-app.get('/browse', function(req, res) {
-  console.log("welcome");
-  infosheet.push("/wee", {
-    year: "hi"
+app.get('/pdf/:folder/:year/:id', function(req, res) {
+  var filename = req.params.year + req.params.id + "i";
+  var route = path.resolve(__dirname + "/public/uploads/" + req.params.folder + "/" + filename + ".pdf");
+  console.log(filename);
+   fs.readFile(route, function (err,data){
+     console.log(err);
+     res.send(data);
+  });
+});
+
+app.get('/json/:year/:id', function(req, res) {
+  var filename = req.params.year + req.params.id;
+  var route = path.resolve(__dirname + "/public/uploads/json/" + filename + ".json");
+  console.log(filename);
+   fs.readFile(route, function (err,data){
+     console.log(err);
+     res.json(data);
   });
 });
 
