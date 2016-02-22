@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var port = 80;
+var port = process.env.PORT;
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var fs = require("fs");
@@ -23,6 +23,13 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage : storage });
 
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(bodyParser.json());
 
 app.use(express.static(path.resolve(__dirname, 'public')));
@@ -35,20 +42,14 @@ app.get('/audio/:year/:id', function(req, res) {
   var filename = req.params.year + req.params.id;
   var route = path.resolve(__dirname + "/resources/audio/" + filename + ".mp3");
   console.log(filename);
-   fs.readFile(route, function (err,data){
-     console.log(err);
-     res.send(data);
-  });
+  res.download(route, filename + ".mp3");
 });
 
 app.get('/pdf/:folder/:year/:id', function(req, res) {
-  var filename = req.params.year + req.params.id + "i";
+  var filename = req.params.year + req.params.id;
   var route = path.resolve(__dirname + "/public/uploads/" + req.params.folder + "/" + filename + ".pdf");
   console.log(filename);
-   fs.readFile(route, function (err,data){
-     console.log(err);
-     res.send(data);
-  });
+  res.download(route, filename + ".pdf");
 });
 
 app.get('/json/:year/:id', function(req, res) {
@@ -57,15 +58,18 @@ app.get('/json/:year/:id', function(req, res) {
   console.log(filename);
    fs.readFile(route, function (err,data){
      console.log(err);
-     res.json(data);
+     res.writeHead(200, {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"});
+     res.end(data);
   });
 });
 
 app.get('/infosheet', function(req, res) {
   var route = path.resolve(__dirname + "/public/uploads/info.json");
    fs.readFile(route, function (err,data){
+     console.log("infosheet requested");
      console.log(err);
-     res.json(data);
+     res.writeHead(200, {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"});
+     res.end(data);
   });
 });
 
